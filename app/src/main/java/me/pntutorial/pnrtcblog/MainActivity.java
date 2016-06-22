@@ -154,5 +154,6 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this, LoginActivity.class);
         intent.putExtra("oldUsername", this.username);
         startActivity(intent);
+	    finish();
     }
 }

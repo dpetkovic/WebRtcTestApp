@@ -28,7 +28,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="me.pntutorial.pnrtcblog.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,9 +39,11 @@
 
         <activity
             android:name="me.pntutorial.pnrtcblog.LoginActivity"
-            android:label="@string/title_activity_login" >
+            android:label="@string/title_activity_login"
+            android:launchMode="singleInstance">
         </activity>
-        <activity android:name=".VideoChatActivity"/>
+        <activity android:name=".VideoChatActivity"
+            android:launchMode="singleInstance"/>
     </application>
 
 </manifest>

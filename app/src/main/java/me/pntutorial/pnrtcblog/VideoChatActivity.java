@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -118,6 +119,7 @@ public class VideoChatActivity extends Activity{
     public void hangup(View view) {
         this.pnRTCClient.closeAllConnections();
         startActivity(new Intent(VideoChatActivity.this, MainActivity.class));
+	    finish();
     }
 
     private class MyRTCListener extends PnRTCListener {
@@ -134,7 +136,8 @@ public class VideoChatActivity extends Activity{
 
         @Override
         public void onAddRemoteStream(final MediaStream remoteStream, final PnPeer peer) {
-            VideoChatActivity.this.runOnUiThread(new Runnable() {
+	        Log.d("Deki", "remoteStream added");
+	        VideoChatActivity.this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     Toast.makeText(VideoChatActivity.this,"Connected to " + peer.getId(), Toast.LENGTH_SHORT).show();
@@ -144,7 +147,10 @@ public class VideoChatActivity extends Activity{
                         VideoRendererGui.update(remoteRender, 0, 0, 100, 100, VideoRendererGui.ScalingType.SCALE_ASPECT_FILL, false);
                         VideoRendererGui.update(localRender, 72, 72, 25, 25, VideoRendererGui.ScalingType.SCALE_ASPECT_FIT, true);
                     }
-                    catch (Exception e){ e.printStackTrace(); }
+                    catch (Exception e)
+                    {
+	                    Log.d( "Deki", e.getMessage() );
+                    }
                 }
             });
         }
